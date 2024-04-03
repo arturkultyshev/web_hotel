@@ -1,4 +1,4 @@
-# lets_go
+# Web Hotel
 ## ✍️ Project Description
 Our project is hotel booking. This is a web application created for convenient and reliable hotel reservations. Users can view available hotels, register, log in, leave reviews, book hotels and view their bookings.
 ### Basic functionality
