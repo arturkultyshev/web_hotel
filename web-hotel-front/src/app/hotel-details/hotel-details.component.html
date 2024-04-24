@@ -1,0 +1,37 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+<div class="container-fluid mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card mb-4 shadow">
+                <img class="card-img-top" [src]="hotel?.photo_url" alt="{{ hotel?.name }}">
+                <div class="card-body light-color">
+                    <div class="d-flex align-items-center">
+                        <h2 class="card-title me-3">{{ hotel?.name }}</h2>
+                        <div class="star-rating me-1">
+                            <ng-container *ngFor="let star of starsService.calculateStars(hotel?.rating || 0)">
+                                <ng-container *ngIf="star === 1">
+                                    <i class="fas fa-star"></i>
+                                </ng-container>
+                                <ng-container *ngIf="star === 0.5">
+                                    <i class="fas fa-star-half-alt"></i>
+                                </ng-container>
+                                <ng-container *ngIf="star === 0">
+                                    <i class="far fa-star"></i>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                        <small class="text-secondary">({{ hotel?.rating }}/5)</small>
+                    </div>
+                    <p class="card-text"><em>{{ hotel?.country }}, {{ hotel?.city }}, {{ hotel?.street }}</em></p>
+                    <p class="card-text"><span class="text-success font-weight-bold fs-5">${{ hotel?.cost }}</span> per night 
+                        <span class="card-text text-secondary">({{ hotel?.capacity }} guests)</span></p>
+                    <p class="card-text">{{ hotel?.additional_info }}</p>
+                    <div class="d-grid">
+                        <a [routerLink]="['/order']" class="btn btn-primary">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
