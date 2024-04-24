@@ -1,0 +1,13 @@
+.card {
+    border: none;
+    background-color: #212529;
+}
+
+.card-img-top {
+    height: 350px;
+    object-fit: cover;
+}
+
+.star-rating {
+    font-size: 1.25rem;
+}
