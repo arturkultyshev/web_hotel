@@ -14,21 +14,21 @@ import { StarsService } from '../stars.service';
   styleUrl: './hotel-list.component.css'
 })
 export class HotelListComponent {
-  hotels = hotels
-  // hotels: Hotel[] | undefined
+  // hotels = hotels
+  hotels: Hotel[] | undefined
 
   constructor(
     private hotelService: HotelService,
     public starsService: StarsService
   ){}
 
-  // ngOnInit(): void {
-  //   this.getHotels()
-  // }
+  ngOnInit(): void {
+    this.getHotels()
+  }
 
-  // getHotels(): void {
-  //   this.hotelService.getHotels().subscribe(hotels => {
-  //     this.hotels = hotels
-  //   })
-  // }
+  getHotels(): void {
+    this.hotelService.getHotels().subscribe(hotels => {
+      this.hotels = hotels
+    })
+  }
 }

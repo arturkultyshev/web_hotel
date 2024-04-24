@@ -29,6 +29,14 @@
                     <p class="card-text">{{ hotel?.additional_info }}</p>
                     <div class="d-grid">
                         <a [routerLink]="['/order']" class="btn btn-primary">Book Now</a>
+                        <div class="d-inline-flex align-items-center mt-3">
+                            <a [routerLink]="['/edit-hotel', hotel?.id]" class="btn btn-secondary btn-sm me-2">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <button type="button" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash-alt" *ngIf="hotel?.id" (click)="deleteHotel()"></i> Delete
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

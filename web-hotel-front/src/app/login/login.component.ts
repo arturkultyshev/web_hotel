@@ -20,11 +20,8 @@ export class LoginComponent {
 
   onLogin() {
     this.authService.login({username: this.login.Username, password: this.login.Password}).subscribe((res:any) =>{
-      if(res.result) {
-        alert("Login Success")
+      if(res.access) {
         this.router.navigateByUrl('/orders')
-      } else {
-        alert(res.message)
       }
     })
   }

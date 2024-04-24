@@ -7,7 +7,7 @@ import { Hotel } from './hotel';
   providedIn: 'root'
 })
 export class HotelService {
-  private apiUrl = 'http://localhost:8000/hotels'
+  private apiUrl = 'http://localhost:8000/api/hotels'
   constructor(private http: HttpClient) { }
 
   getHotels(): Observable<Hotel[]> {
@@ -15,18 +15,18 @@ export class HotelService {
   }
 
   getHotel(id: number): Observable<Hotel> {
-    return this.http.get<Hotel>(`${this.apiUrl}${id}`)
+    return this.http.get<Hotel>(`${this.apiUrl}/${id}`)
   }
 
-  addHotel(hotel: Hotel): Observable<Hotel> {
+  createHotel(hotel: Hotel): Observable<Hotel> {
     return this.http.post<Hotel>(this.apiUrl, hotel);
   }
 
   updateHotel(hotel: Hotel): Observable<Hotel>{
-    return this.http.put<Hotel>(`${this.apiUrl}${hotel.id}`, hotel);
+    return this.http.put<Hotel>(`${this.apiUrl}/${hotel.id}`, hotel);
   }
 
   deleteHotel(id: number): Observable<Hotel> {
-    return this.http.delete<Hotel>(`${this.apiUrl}${id}`)
+    return this.http.delete<Hotel>(`${this.apiUrl}/${id}`)
   }
 }

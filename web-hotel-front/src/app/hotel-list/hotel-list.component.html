@@ -1,4 +1,9 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<div class="text-center mt-4">
+    <a [routerLink]="['/add-hotel']" class="btn btn-primary btn-lg">
+        <i class="fas fa-plus"></i> Add Hotel
+    </a>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-md-4 mt-4" *ngFor="let hotel of hotels">
