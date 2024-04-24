@@ -9,5 +9,10 @@
 }
 
 .nav-link:hover {
-    color: #6ea8fed6;
+    color: #c7ddffd6;
+}
+
+.username {
+    font-weight: bold;
+    font-size: larger;
 }
