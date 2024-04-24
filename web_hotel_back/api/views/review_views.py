@@ -5,7 +5,7 @@ from api.serializers import ReviewSerializer
 
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
-
+from django.http import Http404
 from ..models import Review
 
 
@@ -25,29 +25,28 @@ class ReviewsView(APIView):
 
 
 class ReviewDetailView(APIView):
-    def get_object(self, pk=None):
+    def get_object(self, hotelId, id):
         try:
-            review = Review.objects.get(pk=pk)
-            return review
-        except Review.DoesNotExist as err:
-            return Response({'error': str(err)}, status=status.HTTP_404_NOT_FOUND)
+            return Review.objects.get(hotel_id=hotelId, pk=id)
+        except Review.DoesNotExist:
+            raise Http404
 
-    def get(self, request, id):
-        review = self.get_object(pk=id)
+    def get(self, request, hotelId, id):
+        review = self.get_object(hotelId, id)
         serializer = ReviewSerializer(review)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.data)
 
     @method_decorator(csrf_exempt)
-    def put(self, request, id):
-        review = self.get_object(pk=id)
+    def put(self, request, hotelId, id):
+        review = self.get_object(hotelId, id)
         serializer = ReviewSerializer(review, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     @method_decorator(csrf_exempt)
-    def delete(self, request, id):
-        review = self.get_object(pk=id)
+    def delete(self, request, hotelId, id):
+        review = self.get_object(hotelId, id)
         review.delete()
-        return Response({'deleted': True}, status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_204_NO_CONTENT)

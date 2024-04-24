@@ -5,8 +5,9 @@ from api.serializers import HotelSerializer
 
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
-
+from django.http import Http404
 from ..models import Hotel
+
 
 class HotelsView(APIView):
     def get(self, request):
@@ -21,20 +22,21 @@ class HotelsView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
+
 class HotelDetailView(APIView):
     def get_object(self, pk=None):
         try:
             hotel = Hotel.objects.get(pk=pk)
             return hotel
         except Hotel.DoesNotExist as err:
-            return Response({'error': str(err)}, status=status.HTTP_404_NOT_FOUND)
-    
+            raise Http404('Hotel does not exist')
+
     def get(self, request, id):
         hotel = self.get_object(pk=id)
         serializer = HotelSerializer(hotel)
         return Response(serializer.data, status=status.HTTP_200_OK)
-    
+
     @method_decorator(csrf_exempt)
     def put(self, request, id):
         hotel = self.get_object(pk=id)
@@ -43,10 +45,9 @@ class HotelDetailView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
     @method_decorator(csrf_exempt)
     def delete(self, request, id):
         hotel = self.get_object(pk=id)
         hotel.delete()
         return Response({'deleted': True}, status=status.HTTP_204_NO_CONTENT)
-    
