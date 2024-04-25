@@ -116,7 +116,7 @@ TIME_ZONE = 'Asia/Almaty'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -129,6 +129,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:4200',
+
 ]
+CSRF_TRUSTED_ORIGINS = ['http://localhost:4200']

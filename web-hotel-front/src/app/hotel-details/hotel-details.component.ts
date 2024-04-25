@@ -41,18 +41,21 @@ export class HotelDetailsComponent {
   }
 
   deleteHotel() {
-    if (this.hotel?.id !== undefined) {
-      this.hotelService.deleteHotel(this.hotel?.id).subscribe({
-        next: () => {
-          // Обработка успешного удаления отеля
-          console.log('Hotel deleted successfully!');
-          this.router.navigateByUrl('/hotels')
-        },
-        error: (err) => {
-          // Обработка ошибки при удалении отеля
-          console.error('Failed to delete hotel:', err);
-        }
-      });
+  if (this.hotel && this.hotel.id !== undefined) {
+    this.hotelService.deleteHotel(this.hotel.id).subscribe({
+      next: () => {
+        // Обработка успешного удаления отеля
+        console.log('Hotel deleted successfully!');
+        this.router.navigateByUrl('/hotels');
+      },
+      error: (err) => {
+        // Обработка ошибки при удалении отеля
+        console.error('Failed to delete hotel:', err);
+      }
+    });
+  } else {
+    console.error('Hotel id is undefined or null.');
   }
-}
-}
+}}
+
+

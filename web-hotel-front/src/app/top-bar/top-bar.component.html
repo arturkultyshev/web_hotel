@@ -18,10 +18,13 @@
   </ul>
 
   <div class="col-md-3 text-end">
-    <a *ngIf="!authService.isLogged()" [routerLink]="['/login']" routerLinkActive="active" class="btn btn-outline-primary me-4">Login</a>
+    <div *ngIf="!authService.isLogged()" class="me-4">
+       <a [routerLink]="['/login']" routerLinkActive="active" class="btn btn-outline-primary me-4">Login</a>
+      <a [routerLink]="['/register']" routerLinkActive="active" class="btn btn-outline-primary me-4">Register</a>
+    </div>
     <div *ngIf="authService.isLogged()" [routerLink]="['/login']" class="me-4">
       <!-- <span class="me-3 nav-item username">{{ authService.getUser()?.username }}</span> -->
       <a class="btn btn-outline-primary" (click)="authService.logout()">Logout</a>
-    </div>   
+    </div>
   </div>
 </header>

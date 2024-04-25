@@ -1,22 +1,38 @@
 <div class="container">
     <h1>Create Hotel</h1>
-    <form (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()" [formGroup]="hotelForm">
       <div class="mb-3">
         <label for="name" class="form-label">Name</label>
-        <input type="text" class="form-control" id="name" [(ngModel)]="hotel.name" name="name" required>
+        <input formControlName="name" type="text" class="form-control" id="name"   name="name" required>
       </div>
       <div class="mb-3">
-        <label for="address" class="form-label">Address</label>
-        <input type="text" class="form-control" id="address" [(ngModel)]="hotel.street" name="address" required>
+        <label for="country" class="form-label">Country</label>
+        <input formControlName="country" type="text" class="form-control" id="country"   name="country" required>
       </div>
       <div class="mb-3">
-        <label for="cost" class="form-label">Cost</label>
-        <input type="number" class="form-control" id="cost" [(ngModel)]="hotel.cost" name="cost" required>
+        <label for="city" class="form-label">City</label>
+        <input formControlName="city" type="text" class="form-control" id="city"   name="city" required>
+      </div>
+      <div class="mb-3">
+        <label for="street" class="form-label">Street</label>
+        <input formControlName="street" type="text" class="form-control" id="street"  name="street" required>
       </div>
       <div class="mb-3">
         <label for="capacity" class="form-label">Capacity</label>
-        <input type="number" class="form-control" id="capacity" [(ngModel)]="hotel.capacity" name="capacity" required>
+        <input formControlName="capacity" type="number" class="form-control" id="capacity" name="capacity" required>
       </div>
-      <button type="submit" class="btn btn-primary">Create</button>
+      <div class="mb-3">
+        <label for="cost" class="form-label">Cost</label>
+        <input formControlName="cost" type="number" class="form-control" id="cost" name="cost" required>
+      </div>
+      <div class="mb-3">
+        <label for="photo_url" class="form-label">Photo URL</label>
+        <input formControlName="photo_url" type="text" class="form-control" id="photo_url"  name="photo_url" required>
+      </div>
+      <div class="mb-3">
+        <label for="addition_info" class="form-label">Additional Info</label>
+        <input formControlName="addition_info" type="text" class="form-control" id="addition_info"  name="addition_info" required>
+      </div>
+      <button type="submit" class="btn btn-primary"  [disabled]="hotelForm.invalid">Create</button>
     </form>
   </div>
