@@ -24,7 +24,7 @@
                         <small class="text-secondary">({{ hotel?.rating }}/5)</small>
                     </div>
                     <p class="card-text"><em>{{ hotel?.country }}, {{ hotel?.city }}, {{ hotel?.street }}</em></p>
-                    <p class="card-text"><span class="text-success font-weight-bold fs-5">${{ hotel?.cost }}</span> per night 
+                    <p class="card-text"><span class="text-success font-weight-bold fs-5">${{ hotel?.cost }}</span> per night
                         <span class="card-text text-secondary">({{ hotel?.capacity }} guests)</span></p>
                     <p class="card-text">{{ hotel?.additional_info }}</p>
                     <div class="d-grid">
@@ -33,8 +33,8 @@
                             <a [routerLink]="['/edit-hotel', hotel?.id]" class="btn btn-secondary btn-sm me-2">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
-                            <button type="button" class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash-alt" *ngIf="hotel?.id" (click)="deleteHotel()"></i> Delete
+                            <button type="button" class="btn btn-danger btn-sm" (click)="deleteHotel()">
+                                <i class="fas fa-trash-alt"></i> Delete
                             </button>
                         </div>
                     </div>

@@ -1,0 +1,33 @@
+<div class="form-signup w-75 m-auto mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <div class="container-register">
+          <form (ngSubmit)="onRegister()" class="form-register">
+            <img class="mb-3 mx-auto d-block" src="https://file.gosniipp.ru/api/img/XCdTbWlEQl8wJ1NNSUdyYWJiZXJfMDcxMV8xNTM2XzIwMTlcbWVzc2FnZXNcZmlsZXNcMTc1ODA2MA==.jpg" alt="" width="200" height="100">
+            <h1 class="h3 mb-3 fw-normal text-center">Please register</h1>
+            <div class="form-floating mb-3">
+              <input [(ngModel)]="register.Firstname" name="firstname" type="text" class="form-control black-theme" id="floatingfirstname" placeholder="Firstname" required>
+              <label class="form-label" for="floatingFirstname">Firstname</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input [(ngModel)]="register.Lastname" name="lastname" type="text" class="form-control black-theme" id="floatingLastname" placeholder="Lastname" required>
+              <label class="form-label" for="floatingLastname">Lastname</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input [(ngModel)]="register.Username" name="username" type="text" class="form-control black-theme" id="floatingUsername" placeholder="Username" required>
+              <label class="form-label" for="floatingUsername">Username</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input [(ngModel)]="register.Email" name="email" type="email" class="form-control black-theme" id="floatingEmail" placeholder="Email" required>
+              <label class="form-label" for="floatingEmail">Email address</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input [(ngModel)]="register.Password" name="password" type="password" class="form-control black-theme" id="floatingPassword" placeholder="Password">
+              <label class="form-label" for="floatingPassword">Password</label>
+            </div>
+            <button class="btn btn-primary w-100 py-2" type="submit">Register</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

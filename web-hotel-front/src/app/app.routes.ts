@@ -8,10 +8,11 @@ import { OrdersComponent } from './orders/orders.component';
 import { authGuard } from './auth.guard';
 import { EditHotelComponent } from './edit-hotel/edit-hotel.component';
 import { AddHotelComponent} from './add-hotel/add-hotel.component';
+import { RegisterComponent } from "./register/register.component";
 
 export const routes: Routes = [
     {
-        path: '', 
+        path: '',
         redirectTo: '/home',
         pathMatch: 'full'
     },
@@ -24,22 +25,26 @@ export const routes: Routes = [
         component: HotelListComponent
     },
     {
-        path: 'hotels/:id', 
+        path: 'hotels/:id',
         component: HotelDetailsComponent
     },
     {
         path: '404',
         component: PageNotFoundComponent
-    }, 
+    },
     {
         path: 'login',
         component: LoginComponent
-    }, 
+    },
+    {
+        path: 'register',
+        component: RegisterComponent
+    },
     {
         path: 'orders',
         component: OrdersComponent,
         canActivate: [authGuard]
-    }, 
+    },
     {
         path: 'edit-hotel/:id',
         component: EditHotelComponent
@@ -49,7 +54,7 @@ export const routes: Routes = [
         component: AddHotelComponent
     },
     {
-        path: '**', 
+        path: '**',
         redirectTo: '/404',
         pathMatch: 'full'
     }

@@ -5,18 +5,19 @@ from api.serializers import OrderSerializer
 
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+from datetime import datetime
 
 from ..models import Order
-
 
 class OrdersView(APIView):
     def get(self, request):
         orders = Order.objects.all()
         serializer = OrderSerializer(orders, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
     @method_decorator(csrf_exempt)
     def post(self, request):
+        if 'start_date' not in request.data:
+            return Response({'error': 'start_date is required'}, status=status.HTTP_400_BAD_REQUEST)
         serializer = OrderSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()

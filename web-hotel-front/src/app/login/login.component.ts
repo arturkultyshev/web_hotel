@@ -20,7 +20,7 @@ export class LoginComponent {
 
   onLogin() {
     this.authService.login({username: this.login.Username, password: this.login.Password}).subscribe((res:any) =>{
-      if(res.access) {
+      if(res) {
         this.router.navigateByUrl('/orders')
       }
     })
