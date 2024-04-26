@@ -1,0 +1,30 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+                <div class="card-header">
+                    <h2 class="text-center">Order ID: {{ order?.id }}</h2>
+                </div>
+                <div class="card-body light-color">
+                    <div class="mb-3">
+                        <small class="text-secondary ">Created At: <span>{{ order?.created_at }}</span></small>
+                    </div>
+                    <div class="mb-3">
+                        <img class="card-img-top mb-3" [src]="hotel?.photo_url" alt="{{ hotel?.name }} photo">
+                        <h4>Hotel Name: <span>{{ hotel?.name }}</span></h4>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-secondary">Start Date: <span>{{ order?.start_date }}</span></p>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-secondary">End Date: <span>{{ order?.end_date }}</span></p>
+                    </div>
+                    <div class="mb-3">
+                        <p>Additional Info: <span>{{ order?.additional_info }}</span></p>
+                    </div>
+                    <button class="btn btn-primary btn-sm btn-outline-secondary light-color me-2" (click)="edit(order?.id)" >
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn btn-danger btn-sm btn-outline-secondary light-color me-1" (click)="delete(order?.id)">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+
+

@@ -7,8 +7,9 @@ import { LoginComponent } from './login/login.component';
 import { OrdersComponent } from './orders/orders.component';
 import { authGuard } from './auth.guard';
 import { EditHotelComponent } from './edit-hotel/edit-hotel.component';
-import { AddHotelComponent} from './add-hotel/add-hotel.component';
+import { AddHotelComponent } from './add-hotel/add-hotel.component';
 import { RegisterComponent } from "./register/register.component";
+import { adminGuard } from './admin.guard';
 
 export const routes: Routes = [
     {
@@ -47,11 +48,13 @@ export const routes: Routes = [
     },
     {
         path: 'edit-hotel/:id',
-        component: EditHotelComponent
+        component: EditHotelComponent,
+        canActivate: [adminGuard]
     },
     {
         path: 'add-hotel',
-        component: AddHotelComponent
+        component: AddHotelComponent,
+        canActivate: [adminGuard]
     },
     {
         path: '**',

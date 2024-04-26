@@ -8,7 +8,7 @@ export interface Hotel {
     capacity: number;
     cost: number;
     photo_url: string;
-    additional_info: string;
+    addition_info: string;
 }
 
 export const hotels = [

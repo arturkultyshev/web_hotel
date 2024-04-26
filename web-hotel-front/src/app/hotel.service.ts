@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Hotel } from './hotel';
+import { Review } from './review';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,17 @@ export class HotelService {
 //todo: fix delete button(not clickable)
   deleteHotel(id: number): Observable<Hotel> {
     return this.http.delete<Hotel>(`${this.apiUrl}${id}/`)
+  }
+
+  getReviews(hotelId: number): Observable<Review[]> {
+    return this.http.get<Review[]>(`${this.apiUrl}${hotelId}/reviews/`)
+  }
+
+  createReview(reviewForm: {rating: number, publication_date: string, comment: string, user: number, hotel: number}): Observable<Review> {
+    return this.http.post<Review>(`${this.apiUrl}${reviewForm.hotel}/reviews/`, reviewForm)
+  }
+
+  deleteReview(hotelId: number, reviewId: number): Observable<Review> {
+    return this.http.delete<Review>(`${this.apiUrl}${hotelId}/reviews/${reviewId}`)
   }
 }

@@ -12,11 +12,4 @@ import { CommonModule } from '@angular/common';
 })
 export class TopBarComponent {
   constructor(public authService: AuthService) {}
-  isLogin(): boolean {
-    if (localStorage.getItem('token') != null) {
-      return true;
-    } else {
-      return false;
-    }
-  }
 }

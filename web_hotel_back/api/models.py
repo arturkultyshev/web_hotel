@@ -35,7 +35,7 @@ class Order(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     created_at = models.DateField(default=django.utils.timezone.now)
-    additional_info = models.TextField()
+    additional_info = models.TextField(null=True)
 
     def __str__(self):
         return f"""Order: {self.hotel} - {self.user}"""

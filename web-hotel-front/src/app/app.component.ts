@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { TopBarComponent } from './top-bar/top-bar.component';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,13 @@ import { TopBarComponent } from './top-bar/top-bar.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'web-hotel-front';
+  constructor(private authService: AuthService) {}
+
+  ngOnInit(): void {
+    if (!this.authService.isLogged() && this.authService.isAutoLogin()) {
+      this.authService.autoLogin()
+    }
+  }
 }

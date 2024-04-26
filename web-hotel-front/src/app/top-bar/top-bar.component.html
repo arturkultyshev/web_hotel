@@ -23,8 +23,8 @@
       <a [routerLink]="['/register']" routerLinkActive="active" class="btn btn-outline-primary me-4">Register</a>
     </div>
     <div *ngIf="authService.isLogged()" [routerLink]="['/login']" class="me-4">
-      <!-- <span class="me-3 nav-item username">{{ authService.getUser()?.username }}</span> -->
-      <a class="btn btn-outline-primary" (click)="authService.logout()">Logout</a>
+      <span class="me-3 nav-item username">id: {{ authService.userId }}</span>
+      <a class="btn btn-outline-primary" (click)="authService.logout()" [routerLink]="['/login']">Logout</a>
     </div>
   </div>
 </header>

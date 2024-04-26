@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hotel, hotels } from '../hotel';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HotelService } from '../hotel.service';
@@ -14,7 +14,7 @@ import { HotelService } from '../hotel.service';
 })
 export class EditHotelComponent implements OnInit {
   hotel: Hotel = {} as Hotel;
-  constructor(private route: ActivatedRoute, private hotelService: HotelService) { }
+  constructor(private route: ActivatedRoute, private hotelService: HotelService, private router: Router) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -34,6 +34,7 @@ export class EditHotelComponent implements OnInit {
       this.hotelService.updateHotel(this.hotel).subscribe(
         (response) => {
           console.log('Данные отеля успешно обновлены:', response);
+          this.router.navigateByUrl(`/hotels/${this.hotel.id}`);
           // Выполните здесь необходимые действия после успешного обновления
         },
         (error) => {

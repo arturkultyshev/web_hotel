@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { StarsService } from '../stars.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-hotel-list',
@@ -19,7 +20,8 @@ export class HotelListComponent {
 
   constructor(
     private hotelService: HotelService,
-    public starsService: StarsService
+    public starsService: StarsService,
+    public authService: AuthService
   ){}
 
   ngOnInit(): void {
@@ -31,4 +33,22 @@ export class HotelListComponent {
       this.hotels = hotels
     })
   }
+
+  deleteHotel(hotelId: number) {
+    if (hotelId) {
+      this.hotelService.deleteHotel(hotelId).subscribe({
+        next: () => {
+          console.log('Hotel deleted successfully!');
+          this.hotelService.getHotels().subscribe(hotels => {
+            this.hotels = hotels
+          })
+        },
+        error: (err) => {
+          console.error('Failed to delete hotel:', err);
+        }
+      });
+    } else {
+      console.error('Hotel id is undefined or null.');
+    }
+    }
 }

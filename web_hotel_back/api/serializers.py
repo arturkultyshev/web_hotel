@@ -13,13 +13,13 @@ class HotelSerializer(serializers.ModelSerializer):
                   'addition_info']
 
     def validate(self, attrs):
-        name = attrs.get('name', '')
+        # name = attrs.get('name', '')
         street = attrs.get('street', '')
         cost = attrs.get('cost', '')
         capacity = attrs.get('capacity', '')
-        if not name.isalnum():
-            raise serializers.ValidationError(
-                self.default_error_messages)
+        # if not name.isalnum():
+        #     raise serializers.ValidationError(
+        #         self.default_error_messages)
         return attrs
     def create(self, validated_data):
         return Hotel.objects.create(**validated_data)
@@ -32,22 +32,9 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    start_date = serializers.SerializerMethodField()
-    end_date = serializers.SerializerMethodField()
-    created_at = serializers.SerializerMethodField()
-
     class Meta:
         model = Order
         fields = '__all__'
-
-    def get_start_date(self, obj):
-        return obj.start_date.date() if isinstance(obj.start_date, datetime) else obj.start_date
-
-    def get_end_date(self, obj):
-        return obj.end_date.date() if isinstance(obj.end_date, datetime) else obj.end_date
-
-    def get_created_at(self, obj):
-        return obj.created_at.date() if isinstance(obj.created_at, datetime) else obj.created_at
 
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:

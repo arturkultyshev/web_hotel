@@ -1,0 +1,16 @@
+.list-group-item {
+    background-color: #212529;
+    border-color: #212529;
+}
+
+.container {
+    margin-top: 20px; 
+  }
+  
+  .list-group-item {
+    margin-bottom: 10px; 
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
